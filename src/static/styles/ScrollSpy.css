@@ -1,0 +1,21 @@
+.helper-wrapper {
+  position:fixed;
+  top:90%;
+  left:3%;
+  color:deeppink;
+  width:60px;
+  height:60px;
+  border-radius:30px;
+  -moz-border-radius:30px;
+  -webkit-border-radius:30px;
+}
+
+.helper-wrapper:hover {
+  color:#121212;
+  background:deeppink;
+}
+
+.icon-up {
+  margin:9px 0 0 17px;
+  font-size:2rem;
+}

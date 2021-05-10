@@ -1,0 +1,18 @@
+.suggested-term {
+  opacity:.6;
+  margin-right:1rem;
+}
+
+.suggested-term:last-child {
+  margin-right:0;
+}
+
+.active-term,
+.suggested-term:hover {
+  opacity:1;
+  color:deeppink;
+}
+
+.active-term {
+  font-weight:bold;
+}
