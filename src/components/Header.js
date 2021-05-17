@@ -1,8 +1,29 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
 
 export function Header() {
   const matchCount = useSelector((state) => state.modelData.matchCount);
+  const [isDarkTheme, setIsDarkTheme] = useState('dark' === localStorage.getItem('theme'));
+  const [isThemeChangeTriggered, setIsThemeChangeTriggered] = useState(false);
+
+  const toggleAppTheme = () => {
+    if (!isThemeChangeTriggered) {
+      setIsThemeChangeTriggered(true);
+      setTimeout(() => {
+        setIsThemeChangeTriggered(false);
+
+        if (isDarkTheme) {
+          setIsDarkTheme(false);
+          localStorage.setItem('theme', 'light');
+          document.documentElement.classList.remove('dark')
+        } else {
+          setIsDarkTheme(true);
+          localStorage.setItem('theme', 'dark');
+          document.documentElement.classList.add('dark')
+        }
+      }, 1500);
+    }
+  }
 
   const getMatchText = () => {
     return matchCount > 0 ? `${matchCount.toLocaleString()}` :
@@ -32,6 +53,13 @@ export function Header() {
             {`${matchCount > 1 ? 'Films' : 'Film'} Found`}
           </span>
         }
+      </div>
+      <div className={`absolute top-2 right-5 text-2xl cursor-pointer hvr-grow
+                       ${isThemeChangeTriggered ? 'animate__animated animate__rubberBand' : ''}`}
+           onClick={toggleAppTheme}
+      >
+        {isDarkTheme && <i className="fa fa-sun text-yellow-500"/>}
+        {!isDarkTheme && <i className="fa fa-moon text-indigo-500"/>}
       </div>
     </header>
   );

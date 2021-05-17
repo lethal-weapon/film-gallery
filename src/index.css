@@ -16,7 +16,7 @@
 
 /* Scroll Bar */
 ::-webkit-scrollbar {
-  width:4px;
+  width:3px;
 }
 
 ::-webkit-scrollbar-track {

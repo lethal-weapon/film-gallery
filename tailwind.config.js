@@ -10,7 +10,7 @@ module.exports = {
     extend: {
       animation: {
         'reset-button': 'spin 3s reverse ease-in',
-        'reload-button': 'spin 2s linear infinite',
+        'reload-button': 'spin 2s linear infinite'
       },
       boxShadow: {
         filmLight: '1px 1px .5rem cornflowerblue, -1px -1px .5rem cornflowerblue',
