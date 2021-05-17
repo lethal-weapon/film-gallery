@@ -13,15 +13,13 @@ export function Section() {
 
   return (
     <section>
-      <div className="container-fluid">
-        <div className="container">
-          <Dashboard/>
-          <Suggestion/>
-
-          <div className="animate__animated animate__fadeIn animate__slower animate__delay-4s">
-            {viewMode === DataTypes.FILM_GRID && <FilmGrid/>}
-            {viewMode === DataTypes.FILM_LIST && <FilmList/>}
-          </div>
+      <div className="container mx-auto w-4/5">
+        <Dashboard/>
+        <Suggestion/>
+        <div className="animate__animated animate__fadeIn animate__slower animate__delay-4s">
+          {viewMode === DataTypes.FILM_GRID && <FilmGrid/>}
+          {viewMode === DataTypes.FILM_LIST && <FilmList/>}
+        </div>
 
           {/*<div className="card bg-dark mt-2">*/}
           {/*  <div className="card-body">*/}
@@ -32,7 +30,6 @@ export function Section() {
           {/*    </pre>*/}
           {/*  </div>*/}
           {/*</div>*/}
-        </div>
       </div>
     </section>
   );

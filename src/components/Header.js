@@ -11,31 +11,24 @@ export function Header() {
 
   return (
     <header>
-      <a className="hvr-buzz"
-         style={{outline: "none"}}
+      <a className="outline-none cursor-default"
          href="https://github.com/lethal-weapon/film-gallery"
          target="_blank"
          rel="noopener noreferrer"
       >
-        <img src={`${process.env.PUBLIC_URL}/logo.svg`}
-             alt="AppLogo"
-             className="ml-4 animate__animated animate__lightSpeedInRight animate__delay-1s"
-             style={{width: 72 + 'px', height: 72 + 'px'}}/>
+        <img className="-my-2 ml-4 w-16 h-16 cursor-pointer hvr-grow
+                        animate__animated animate__lightSpeedInRight animate__delay-1s"
+             src={`${process.env.PUBLIC_URL}/logo.svg`}
+             alt="AppLogo"/>
       </a>
-      <div style={{
-        position: "absolute",
-        top: 1 + '%',
-        left: (47 - getMatchText().length) + '%',
-        fontFamily: "monospace"
-      }}>
-        <span className="font-weight-bold font-italic"
-              style={{fontSize: 2 + 'rem', color: "tomato"}}
-        >
+      <div className="absolute top-2 font-mono"
+           style={{left: (47 - getMatchText().length) + '%'}}>
+        <span className="text-3xl italic font-bold text-red-500 dark:text-lime-600">
           {getMatchText()}
         </span>
         {
           matchCount > 0 &&
-          <span className="ml-3" style={{fontSize: 1.5 + 'rem'}}>
+          <span className="ml-3 text-2xl">
             {`${matchCount > 1 ? 'Films' : 'Film'} Found`}
           </span>
         }

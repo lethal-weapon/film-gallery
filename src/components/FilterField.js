@@ -36,21 +36,23 @@ export function FilterField({fieldName, fieldValues, isMultipleOptionField}) {
     }
   }
 
-  return <div className="row mx-3 my-2">
-    <span className="mr-3"><b>{fieldName}</b></span>
-    {
-      fieldValues.map(option =>
-        <span
-          key={option}
-          className={`
-            ${activeOptions.includes(option) ? 'badge-primary border-primary ' : 'border-secondary '}
-            mr-2 mt-1 badge badge-pill border hvr-grow
-          `}
-          onClick={() => handleOptionChange(option)}
-        >
-          {option}
-        </span>
-      )
-    }
-  </div>
+  return (
+    <div className="mt-2">
+      <span className="mr-1 font-bold">{fieldName}</span>
+      {
+        fieldValues.map(option =>
+          <span
+            key={option}
+            className={`ml-2 mt-1 px-1.5 py-0.5 text-sm border rounded-full transition duration-300 ease-in-out
+              ${activeOptions.includes(option) ? 
+              'text-gray-300 bg-blue-600 border-blue-600 dark:bg-indigo-700 dark:border-indigo-700' :
+              'border-gray-500 hover:bg-blue-400 dark:hover:bg-indigo-400'}`}
+            onClick={() => handleOptionChange(option)}
+          >
+            {option}
+          </span>
+        )
+      }
+    </div>
+  );
 }

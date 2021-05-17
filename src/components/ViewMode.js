@@ -44,15 +44,15 @@ export function ViewMode() {
   }
 
   return (
-    <div className="row justify-content-end">
-      <span className={`text-${viewMode === DataTypes.FILM_GRID ? 'primary' : 'secondary'}`}
+    <div>
+      <span className={`${viewMode === DataTypes.FILM_GRID ? 'text-blue-500 dark:text-indigo-600' : ''}`}
             onClick={() => handleViewModeChange(DataTypes.FILM_GRID)}>
-        <i className="fa fa-lg fa-th-large hvr-grow-shadow"/>
+        <i className="fa fa-lg fa-th-large hvr-grow"/>
       </span>
       <span className="mx-2">|</span>
-      <span className={`text-${viewMode === DataTypes.FILM_LIST ? 'primary' : 'secondary'}`}
+      <span className={`${viewMode === DataTypes.FILM_LIST ? 'text-blue-500 dark:text-indigo-600' : ''}`}
             onClick={() => handleViewModeChange(DataTypes.FILM_LIST)}>
-        <i className="fa fa-lg fa-th-list hvr-grow-shadow"/>
+        <i className="fa fa-lg fa-th-list hvr-grow"/>
       </span>
     </div>
   );

@@ -6,14 +6,16 @@ import {DataTypes} from '../store/constants/Types';
 export function FilmList() {
   const listFilms = useSelector((state) => state.modelData[DataTypes.FILM_LIST]) || [];
 
-  return <>
-    {
-      listFilms.map(film =>
-        <FilmListCard
-          key={`${film['title']}-${film['year']}`}
-          film={film}
-        />
-      )
-    }
-  </>
+  return (
+    <>
+      {
+        listFilms.map(film =>
+          <FilmListCard
+            key={film['id']}
+            film={film}
+          />
+        )
+      }
+    </>
+  );
 }

@@ -3,7 +3,6 @@ import {useDispatch, useSelector, useStore} from 'react-redux';
 import {changePagingInfo, changeSearchMode, changeSearchTerm, changeSearchText} from '../store/actions/QueryActions';
 import {fetchNewTerms, searchFilms} from '../store/actions/ModelActions';
 import {DataTypes} from '../store/constants/Types';
-import '../static/styles/Dashboard.css';
 
 export function SearchText() {
   const dispatch = useDispatch();
@@ -65,11 +64,14 @@ export function SearchText() {
   }
 
   return (
-    <div className="row mx-3">
+    <div>
       <span><i className="fa fa-filter"/></span>
       <span className="mx-2">/</span>
       <span><i className="fa fa-search"/></span>
-      <input className="search-textbox"
+      <input className="ml-4 px-4 py-2 h-9 bg-transparent border rounded-full outline-none
+                        w-1/5 focus:w-1/2 transition-all duration-500 ease-in-out
+                        border-gray-600 text-gray-900
+                        dark:border-gray-400 dark:text-pink-500"
              type="text"
              name="text"
              placeholder="Titles | Cast | Directors | Writers | Plot"

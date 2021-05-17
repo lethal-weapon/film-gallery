@@ -13,14 +13,16 @@ export function FilmGrid() {
     return rows;
   }
 
-  return <>
-    {
-      groupFilmsByRow().map((group, index) =>
-        <FilmGridRow
-          key={index}
-          films={group}
-        />
-      )
-    }
-  </>
+  return (
+    <>
+      {
+        groupFilmsByRow().map((group, index) =>
+          <FilmGridRow
+            key={index}
+            films={group}
+          />
+        )
+      }
+    </>
+  );
 }

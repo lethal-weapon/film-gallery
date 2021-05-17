@@ -1,11 +1,10 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector, useStore} from 'react-redux';
-import {changeSearchMode, changeSearchTerm, changePagingInfo} from '../store/actions/QueryActions';
+import {changePagingInfo, changeSearchMode, changeSearchTerm} from '../store/actions/QueryActions';
 import {searchFilms} from '../store/actions/ModelActions';
 import {cleanCredit} from '../utilities/CreditCleaner';
 import {ViewMode} from './ViewMode';
 import {DataTypes} from '../store/constants/Types';
-import '../static/styles/Suggestion.css';
 
 export function Suggestion() {
   const dispatch = useDispatch();
@@ -23,9 +22,9 @@ export function Suggestion() {
       const queryParams = store.getState().queryData;
 
       if (currentTerm !== previousTerm &&
-          currentTerm.trim().length !== 0 &&
-          currentMode !== DataTypes.SEARCH_MODES[0] &&
-          currentPage === 0) {
+        currentTerm.trim().length !== 0 &&
+        currentMode !== DataTypes.SEARCH_MODES[0] &&
+        currentPage === 0) {
         dispatch(searchFilms(queryParams));
       }
     });
@@ -61,24 +60,25 @@ export function Suggestion() {
   }
 
   return (
-    <div className="card bg-dark mt-2 animate__animated animate__fadeIn animate__slower animate__delay-3s">
-      <div className="card-body py-2">
-        <div className="row mr-1">
-          <div className="col-11">
-            {
-              getSuggestedTerms().map(term =>
-                <span key={term}
-                      className={`suggested-term ${term === searchTerm ? 'active-term' : ''}`}
-                      onClick={() => handleSearchTermChange(term)}
-                >
-                  {term}
-                </span>
-              )
-            }
-          </div>
-          <div className="col-1">
-            <ViewMode/>
-          </div>
+    <div className="p-2 mt-2 rounded-lg bg-blue-300 dark:bg-dark-800
+                    animate__animated animate__fadeIn animate__slower animate__delay-3s">
+      <div className="grid grid-rows-1 grid-cols-12">
+        <div className="col-span-11">
+          {
+            getSuggestedTerms().map(term =>
+              <span key={term}
+                    className={`ml-3 ${term === searchTerm ?
+                      'opacity-100 text-gray-900 dark:text-pink-500 font-black' :
+                      'opacity-60 hover:opacity-100 hover:text-gray-900 dark:hover:text-pink-500'}`}
+                    onClick={() => handleSearchTermChange(term)}
+              >
+                {term}
+              </span>
+            )
+          }
+        </div>
+        <div className="col-span-1">
+          <ViewMode/>
         </div>
       </div>
     </div>

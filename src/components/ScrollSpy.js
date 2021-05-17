@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchNextPage} from '../store/actions/ModelActions';
 import useWindowDimensions from '../utilities/WindowDimensions';
-import '../static/styles/ScrollSpy.css';
 
 export function ScrollSpy() {
   const PAGING_THRESHOLD = 75;
@@ -45,14 +44,19 @@ export function ScrollSpy() {
   const scrollToTop = () =>
     window.scrollTo({top: 0, behavior: 'smooth'})
 
-  return <>
-    {
-      isButtonVisible &&
-      <div className="helper-wrapper hvr-icon-bob hvr-wobble-skew"
-           onClick={scrollToTop}
-      >
-        <i className="icon-up fa fa-angle-up"/>
-      </div>
-    }
-  </>
+  return (
+    <>
+      {
+        isButtonVisible &&
+        <div className="fixed bottom-6 left-6 pl-px w-12 h-12 rounded-full
+                        transition duration-500 ease-in-out
+                        text-gray-900 hover:bg-gray-900 hover:text-gray-300
+                        dark:text-pink-500 dark:hover:bg-pink-500 dark:hover:text-dark-900"
+             onClick={scrollToTop}
+        >
+          <i className="fa fa-angle-up text-4xl mt-1.5 ml-3"/>
+        </div>
+      }
+    </>
+  );
 }
