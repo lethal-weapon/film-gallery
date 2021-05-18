@@ -8,19 +8,20 @@ export function Header() {
 
   const toggleAppTheme = () => {
     if (!isThemeChangeTriggered) {
+      // apply first animation before changing
       setIsThemeChangeTriggered(true);
       setTimeout(() => {
-        setIsThemeChangeTriggered(false);
-
         if (isDarkTheme) {
           setIsDarkTheme(false);
           localStorage.setItem('theme', 'light');
-          document.documentElement.classList.remove('dark')
+          document.documentElement.classList.remove('dark');
         } else {
           setIsDarkTheme(true);
           localStorage.setItem('theme', 'dark');
-          document.documentElement.classList.add('dark')
+          document.documentElement.classList.add('dark');
         }
+        // apply second animation after changing
+        setIsThemeChangeTriggered(false);
       }, 1500);
     }
   }
@@ -37,7 +38,7 @@ export function Header() {
          target="_blank"
          rel="noopener noreferrer"
       >
-        <img className="-my-2 ml-4 w-16 h-16 cursor-pointer hvr-grow
+        <img className="-my-2 ml-4 w-16 h-16 cursor-pointer
                         animate__animated animate__lightSpeedInRight animate__delay-1s"
              src={`${process.env.PUBLIC_URL}/logo.svg`}
              alt="AppLogo"/>
@@ -54,12 +55,12 @@ export function Header() {
           </span>
         }
       </div>
-      <div className={`absolute top-2 right-5 text-2xl cursor-pointer hvr-grow
-                       ${isThemeChangeTriggered ? 'animate__animated animate__rubberBand' : ''}`}
+      <div className={`absolute top-3 right-5 text-2xl cursor-pointer hvr-grow animate__animated
+                       ${isThemeChangeTriggered ? 'animate__rubberBand' : 'animate__bounce'}`}
            onClick={toggleAppTheme}
       >
         {isDarkTheme && <i className="fa fa-sun text-yellow-500"/>}
-        {!isDarkTheme && <i className="fa fa-moon text-indigo-500"/>}
+        {!isDarkTheme && <i className="fa fa-moon text-indigo-600"/>}
       </div>
     </header>
   );

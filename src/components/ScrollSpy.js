@@ -4,7 +4,7 @@ import {fetchNextPage} from '../store/actions/ModelActions';
 import useWindowDimensions from '../utilities/WindowDimensions';
 
 export function ScrollSpy() {
-  const PAGING_THRESHOLD = 75;
+  const PAGING_THRESHOLD = 80;
   const dispatch = useDispatch();
   const hasNextPage = useSelector((state) => state.queryData.hasNextPage);
   const queryParams = useSelector((state) => state.queryData);
@@ -42,7 +42,7 @@ export function ScrollSpy() {
 
   // Set the page Y offset to 0 and make transition smooth
   const scrollToTop = () =>
-    window.scrollTo({top: 0, behavior: 'smooth'})
+    window.scrollTo({top: 0, behavior: 'smooth'});
 
   return (
     <>

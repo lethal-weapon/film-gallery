@@ -12,9 +12,9 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 
 // Setup the App theme before rendering anything
 if ('dark' === localStorage.getItem('theme')) {
-  document.documentElement.classList.add('dark')
+  document.documentElement.classList.add('dark');
 } else {
-  document.documentElement.classList.remove('dark')
+  document.documentElement.classList.remove('dark');
 }
 
 // Create the Redux data store
