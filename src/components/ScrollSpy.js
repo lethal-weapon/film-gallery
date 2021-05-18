@@ -13,6 +13,7 @@ export function ScrollSpy() {
   const {height, width} = useWindowDimensions();
   const [isButtonVisible, setIsButtonVisible] = useState(false);
   const [needCheckPaging, setNeedCheckPaging] = useState(true);
+  const [contentRemainder, setContentRemainder] = useState("");
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -22,15 +23,21 @@ export function ScrollSpy() {
   const handleScroll = () => {
     const scrolledHeight = window.pageYOffset;
     const appHeight = document.getElementById('root').clientHeight;
-
-    // show the button when the distance of 'height of the window' has scrolled
+    // show the button and remainder when the distance of 'height of the window' has scrolled
     setIsButtonVisible(scrolledHeight > height);
 
-    // check if need to do the some pagination
-    if (needCheckPaging && hasNextPage && appHeight > height) {
+    if (appHeight > height) {
       const seemHeight = height + scrolledHeight;
-      const seemPercentage = 100 * (seemHeight / appHeight);
-      if (seemPercentage >= PAGING_THRESHOLD) {
+      const seemPercentage = Math.floor(100 * (seemHeight / appHeight));
+      const unseemPercentage = 100 - seemPercentage;
+      // update the content remainder if necessary
+      if (unseemPercentage < 3) {
+        setContentRemainder(`END`);
+      } else if (unseemPercentage % 10 === 0) {
+        setContentRemainder(`${unseemPercentage}%`);
+      }
+      // check if need to do the some pagination
+      if (needCheckPaging && hasNextPage && seemPercentage >= PAGING_THRESHOLD) {
         dispatch(fetchNextPage(queryParams));
         // prevent the exact same request from getting dispatched more than once
         // because scroll event will actually trigger multiple times PER scroll
@@ -40,10 +47,6 @@ export function ScrollSpy() {
     }
   }
 
-  // Set the page Y offset to 0 and make transition smooth
-  const scrollToTop = () =>
-    window.scrollTo({top: 0, behavior: 'smooth'});
-
   return (
     <>
       {
@@ -52,9 +55,15 @@ export function ScrollSpy() {
                         transition duration-500 ease-in-out
                         text-gray-900 hover:bg-gray-900 hover:text-gray-300
                         dark:text-pink-500 dark:hover:bg-pink-500 dark:hover:text-dark-900"
-             onClick={scrollToTop}
+             onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
         >
           <i className="fa fa-angle-up text-4xl mt-1.5 ml-3"/>
+        </div>
+      }
+      {
+        isButtonVisible &&
+        <div className="fixed bottom-8 right-6 font-bold text-2xl text-gray-900 dark:text-pink-500">
+          {contentRemainder}
         </div>
       }
     </>
